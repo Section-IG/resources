@@ -28,3 +28,4 @@ firebase.json
 firestore.rules
 firestore.indexes.json
 src/firebase.ts
+.firebase/
