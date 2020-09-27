@@ -31,7 +31,7 @@ const NewResourceForm: React.FC<Props> = ({ onSubmit }) => {
   return (
     <Form inline onSubmit={handleSubmit}>
       <Form.Group controlId='urlFormGroup' className='mb-2 mr-sm-2'>
-        <Form.Label className='mr-2'>URL</Form.Label>
+        <Form.Label className='mr-2'>URL <span className='text-danger'>*</span></Form.Label>
         <Form.Control
           placeholder='https://resource.url'
           value={url}
