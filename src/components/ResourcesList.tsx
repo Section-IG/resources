@@ -19,7 +19,7 @@ const ResourcesList: React.FC<Props> = ({ resources }) => {
 
   return (
     <>
-      <InputGroup className='mb-3 w-50'>
+      <InputGroup className='mb-3'>
         <InputGroup.Prepend>
           <InputGroup.Text>
             <span role='img' aria-labelledby='search emoji'>🔍</span>
