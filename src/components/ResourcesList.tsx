@@ -28,7 +28,7 @@ const ResourcesList: React.FC<Props> = ({ resources }) => {
         <FormControl
           type='text'
           value={filter}
-          placeholder='Search Icons'
+          placeholder='Search for resources'
           onChange={(e) => setFilter(e.currentTarget.value)}
         />
       </InputGroup>
