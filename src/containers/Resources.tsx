@@ -16,8 +16,8 @@ type Action = {
 const reducer = (state: State, action: Action) => {
   switch(action.type) {
     case 'added': return { ...state, ready: true, resources: [...state.resources, action.payload]};
-    case "modified": return { ...state, ready: true, animes: state.resources.map(a => a.id !== action.payload.id ? a : action.payload) };
-    case "removed": return { ...state, ready: true, animes: state.resources.filter(a => a.id !== action.payload.id) };
+    case 'modified': return { ...state, ready: true, resources: state.resources.map(a => a.id !== action.payload.id ? a : action.payload) };
+    case 'removed': return { ...state, ready: true, resources: state.resources.filter(a => a.id !== action.payload.id) };
     default: return state;
   }
 };
