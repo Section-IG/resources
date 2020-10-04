@@ -13,7 +13,11 @@ const ResourcesList: React.FC<Props> = ({ resources }) => {
   const [filter, setFilter] = useState("");
   const sorted = useMemo(() => {
     let array =  sortBy(resources, resource => resource.id);
-    if (filter) array = array.filter(resource => (resource.description && resource.description.includes(filter)) || (resource.tags && resource.tags.some(t => t.includes(filter))));
+    if (filter) array = array.filter(
+      (resource) =>
+        (resource.description && resource.description.toLowerCase().includes(filter))
+        || (resource.tags && resource.tags.some((t) => t.toLowerCase().includes(filter)))
+    );
     return array;
   }, [resources, filter]);
 
@@ -29,7 +33,7 @@ const ResourcesList: React.FC<Props> = ({ resources }) => {
           type='text'
           value={filter}
           placeholder='Search for resources'
-          onChange={(e) => setFilter(e.currentTarget.value)}
+          onChange={(e) => setFilter(e.currentTarget.value.toLowerCase())}
         />
       </InputGroup>
 
