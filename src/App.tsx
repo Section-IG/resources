@@ -4,13 +4,24 @@ import HowTo from './components/HowTo';
 import NewResource from './containers/NewResource';
 import Resources from './containers/Resources';
 
-function App() {
+import '@forevolve/bootstrap-dark/dist/css/toggle-bootstrap-dark.css';
+import '@forevolve/bootstrap-dark/dist/css/toggle-bootstrap.css';
+import { useDarkMode } from './hooks/useDarkMode';
+import Toggle from './components/Toggle';
+import { Container } from 'react-bootstrap';
+
+const App: React.FC = () => {
+  const [theme, toggleTheme, componentMounted] = useDarkMode();
+
+  if (!componentMounted) return <div />;
+
   return (
-    <div className='container'>
+    <Container>
       <header className='mt-3 mb-4'>
         <div>
           <h1 className='d-inline'>Unofficial IESN resources from teachers &amp; students! </h1>
           <HowTo />
+          <Toggle theme={theme} toggleTheme={toggleTheme} />
         </div>
         <NewResource />
       </header>
@@ -20,8 +31,8 @@ function App() {
       </main>
 
       <footer className='footer text-center mb-3'>&copy; IESN-IG 2020.</footer>
-    </div>
+    </Container>
   );
-}
+};
 
 export default App;
