@@ -3,11 +3,13 @@ import { Button, Card } from 'react-bootstrap';
 import { ResourceModel } from '../models';
 import { ReactTinyLink } from 'react-tiny-link';
 
-const ResourceListItem: React.FC<ResourceModel> = ({ id, url, description, tags}) => { 
+const ResourceListItem: React.FC<ResourceModel> = ({ id, url, title, description, tags}) => { 
   return (
     <Card className='text-center' key={id}>
+      { title && <Card.Header>{title}</Card.Header> }
+      
       <Card.Body>
-        <ReactTinyLink showGraphic={true} url={url} cardSize='small' proxyUrl='http://cors.team-radiateur.fun:6443' />
+        <ReactTinyLink showGraphic={true} url={url} cardSize='small' />
         { description && <Card.Text className='mt-2'>{description}</Card.Text> }
         <Button className='mt-2' href={url} target='_blank' variant="secondary">Open link</Button>
       </Card.Body>
