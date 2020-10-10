@@ -13,7 +13,7 @@ const DEFAULT_OPTIONAL_STRING: string = null;
 const DEFAULT_TAGS: string[] = [];
 
 const NewResourceForm: React.FC<Props> = ({ onSubmit }) => {
-  const [shown, setShown] = useState(false);
+  const [shown, setShown] = useState(true);
   
   const [url, setUrl] = useState(DEFAULT_URL);
   const [title, setTitle] = useState(DEFAULT_OPTIONAL_STRING);
@@ -33,7 +33,7 @@ const NewResourceForm: React.FC<Props> = ({ onSubmit }) => {
   };
   
   return (
-    <Accordion>
+    <Accordion defaultActiveKey='0'>
       <Accordion.Toggle as='span' eventKey='0' onClick={() => setShown(!shown)}>
         {shown ? '🞃' : '🞂'} Add new resource
       </Accordion.Toggle>
