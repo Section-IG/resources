@@ -15,7 +15,8 @@ const ResourcesList: React.FC<Props> = ({ resources }) => {
     let array =  sortBy(resources, resource => resource.id);
     if (filter) array = array.filter(
       (resource) =>
-        (resource.description && resource.description.toLowerCase().includes(filter.toLowerCase()))
+        (resource.title && resource.title.toLowerCase().includes(filter.toLowerCase()))
+        || (resource.description && resource.description.toLowerCase().includes(filter.toLowerCase()))
         || (resource.tags && resource.tags.some((t) => t.toLowerCase().includes(filter.toLowerCase())))
     );
     return array;

@@ -6,7 +6,7 @@ import { ReactTinyLink } from 'react-tiny-link';
 const ResourceListItem: React.FC<ResourceModel> = ({ id, url, title, description, tags}) => { 
   return (
     <Card className='text-center' key={id}>
-      { title && <Card.Header>{title}</Card.Header> }
+      { title && <Card.Header>{title.toUpperCase()}</Card.Header> }
       
       <Card.Body>
         <ReactTinyLink showGraphic={true} url={url} cardSize='small' proxyUrl='https://cors.team-radiateur.fun:6443' />
