@@ -6,7 +6,7 @@ import Resources from './containers/Resources';
 
 import '@forevolve/bootstrap-dark/dist/css/toggle-bootstrap-dark.css';
 import '@forevolve/bootstrap-dark/dist/css/toggle-bootstrap.css';
-import { useDarkMode } from './hooks/useDarkMode';
+import useDarkMode from './hooks/useDarkMode';
 import Toggle from './components/Toggle';
 import { Container } from 'react-bootstrap';
 
