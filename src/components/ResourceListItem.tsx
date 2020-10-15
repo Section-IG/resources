@@ -13,7 +13,7 @@ const ResourceListItem: React.FC<ResourceModel> = ({ id, url, title, description
 
         { description && <Card.Text className={title ? '' : 'mt-2'}>{description}</Card.Text> }
 
-        <Button className={(title || description) ? '' : 'mt-3'} href={url} target='_blank' variant="secondary">Open link</Button>
+        <Button className={(title || description) ? '' : 'mt-3'} href={url} target='_blank' variant="secondary">Ouvrir le lien</Button>
       </Card.Body>
 
       {tags && tags.length > 0 && <Card.Footer>{tags.join(', ')}</Card.Footer> }

@@ -18,11 +18,15 @@ const App: React.FC = () => {
   return (
     <Container>
       <header className='mt-3 mb-4'>
+        <Toggle theme={theme} toggleTheme={toggleTheme} />
+
         <div>
-          <h1 className='d-inline'>Unofficial IESN resources from teachers &amp; students! </h1>
+          <h1 className='d-inline'>
+            Ressources non-officielle des étudiants &amp; professeurs{' '}
+          </h1>
           <HowTo />
-          <Toggle theme={theme} toggleTheme={toggleTheme} />
         </div>
+
         <NewResource />
       </header>
 
@@ -30,7 +34,7 @@ const App: React.FC = () => {
         <Resources as={ResourcesList} />
       </main>
 
-      <footer className='footer text-center mb-3'>&copy; IESN-IG 2020.</footer>
+      <footer className='footer text-center mb-3'>Open-source @ <a href='https://github.com/IESN-IG/resources'>Github</a>. &copy; IESN-IG 2020.</footer>
     </Container>
   );
 };

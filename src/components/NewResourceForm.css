@@ -5,6 +5,10 @@
   }
 }
 
+.accordion-toggle:hover {
+  cursor: pointer;
+}
+
 .bootstrap-dark .react-tag-input {
   color: #fff;
   background-color: #000;

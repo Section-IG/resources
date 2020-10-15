@@ -3,6 +3,7 @@ import { ResourceForm } from '../models';
 import { Accordion, Button, Form } from 'react-bootstrap';
 import ReactTagInput from '@pathofdev/react-tag-input';
 import './NewResourceForm.css';
+import useStorage from '../hooks/useStorage';
 
 type Props = {
   onSubmit: (r: ResourceForm) => void;
@@ -13,7 +14,7 @@ const DEFAULT_OPTIONAL_STRING: string = null;
 const DEFAULT_TAGS: string[] = [];
 
 const NewResourceForm: React.FC<Props> = ({ onSubmit }) => {
-  const [shown, setShown] = useState(true);
+  const [shown, setShown] = useStorage('showForm', true);
   
   const [url, setUrl] = useState(DEFAULT_URL);
   const [title, setTitle] = useState(DEFAULT_OPTIONAL_STRING);
@@ -23,10 +24,13 @@ const NewResourceForm: React.FC<Props> = ({ onSubmit }) => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    if (description === "") setDescription(null);
-    if (title === "") setTitle(null);
-
-    onSubmit({ url, title, description, tags });
+    onSubmit({
+      url: url.trim(),
+      title: title ? title.trim() : null,
+      description: description ? description.trim() : null,
+      tags,
+    });
+    
     setUrl(DEFAULT_URL);
     setTitle(DEFAULT_OPTIONAL_STRING);
     setDescription(DEFAULT_OPTIONAL_STRING);
@@ -34,18 +38,16 @@ const NewResourceForm: React.FC<Props> = ({ onSubmit }) => {
   };
   
   return (
-    <Accordion defaultActiveKey='0'>
-      <Accordion.Toggle as='span' eventKey='0' onClick={() => setShown(!shown)}>
-        {shown ? '🞃' : '🞂'} Add new resource
+    <Accordion activeKey={shown ? '0' : undefined}>
+      <Accordion.Toggle as='span' eventKey='0' onClick={() => setShown(!shown)} className='accordion-toggle'>
+        {shown ? '🞃' : '🞂'} Ajouter une nouvelle ressource
       </Accordion.Toggle>
       <Accordion.Collapse eventKey='0'>
         <Form inline onSubmit={handleSubmit}>
           <Form.Group controlId='urlFormGroup' className='mb-2 mr-sm-2'>
-            <Form.Label className='mr-2'>
-              URL <span className='text-danger'>*</span>
-            </Form.Label>
+            <Form.Label className='mr-2'>URL <span className='text-danger'>*</span></Form.Label>
             <Form.Control
-              placeholder='https://resource.url'
+              placeholder='https://ressource.url'
               value={url}
               onChange={(e) => setUrl(e.currentTarget.value)}
               type='url'
@@ -54,7 +56,7 @@ const NewResourceForm: React.FC<Props> = ({ onSubmit }) => {
           </Form.Group>
 
           <Form.Group controlId='titleFormGroup' className='mb-2 mr-sm-2'>
-            <Form.Label className='mr-2'>Title</Form.Label>
+            <Form.Label className='mr-2'>Titre</Form.Label>
             <Form.Control
               value={title || ''}
               onChange={(e) => setTitle(e.currentTarget.value)}
@@ -73,12 +75,7 @@ const NewResourceForm: React.FC<Props> = ({ onSubmit }) => {
           </Form.Group>
 
           <Form.Group controlId='tagsFormGroup' className='mb-2 mr-2'>
-            <Form.Label className='mr-2'>
-              Topics{' '}
-              <span className='text-secondary ml-sm-2'>
-                (separate with enter)
-              </span>
-            </Form.Label>
+            <Form.Label className='mr-2'>Topics <span className='text-secondary ml-sm-2'>(séparés par un Enter)</span></Form.Label>
             <ReactTagInput
               tags={tags}
               placeholder={' '}
@@ -87,13 +84,7 @@ const NewResourceForm: React.FC<Props> = ({ onSubmit }) => {
             />
           </Form.Group>
 
-          <Button
-            variant='primary'
-            type='submit'
-            className='mb-2 newResourceFormSubmit'
-          >
-            Submit
-          </Button>
+          <Button variant='primary' type='submit' className='mb-2 newResourceFormSubmit'>Ajouter</Button>
         </Form>
       </Accordion.Collapse>
     </Accordion>

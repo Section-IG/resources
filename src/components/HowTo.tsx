@@ -1,45 +1,38 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Alert, Badge, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import useStorage from '../hooks/useStorage';
 
 const HowTo: React.FC = () => {
-  const [show, setShow] = useState(true);
-  
-  if (show) {
+  const [shown, setShown] = useStorage('showHowTo', true);
+
+  if (shown) {
     return (
-      <Alert className='mt-3' variant='success' dismissible onClose={() => setShow(false)}>
-        <Alert.Heading>A bit of an explanation</Alert.Heading>
+      <Alert className='mt-3' variant='success' dismissible onClose={() => setShown(false)}>
+        <Alert.Heading>Une petite explication</Alert.Heading>
         <p>
-          This website offers you the possibility to keep a list of awesome
-          resources for you and others. Do not hesitate to share
-          tools, IDEs, plugins, extensions and whatever you find interesting and useful.
+          Ce site web offre la possibilité aux étudiants, alumni et professeurs
+          de l'IESN de garder une liste de supers ressources.
+        </p>
+        <p>
+          N'hésitez pas à partager vos outils, IDEs, plugins, extensions ou
+          toute autre chose que vous trouvez intéressante et utile.
         </p>
         <hr />
         <p className='mb-0'>
-          &#x26A0; Once added to the list, an item cannot be removed nor edited. Use wisely!
+          &#x26A0; Une fois ajouté à la liste, votre item ne peut plus être
+          modifié ou supprimé. Réfléchissez-y donc à deux fois!
         </p>
       </Alert>
     );
   }
 
   return (
-    <OverlayTrigger
-      key='right'
-      placement='right'
-      overlay={
-        <Tooltip id='tooltip-right'>
-          Show more information about this website
-        </Tooltip>
-      }
+    <OverlayTrigger 
+      key='right' 
+      placement='right' 
+      overlay={<Tooltip id='tooltip-right'>Plus d'infos sur le site</Tooltip>}
     >
-      <Badge
-        as='a'
-        pill
-        variant='secondary'
-        href='#'
-        onClick={() => setShow(true)}
-      >
-        ?
-      </Badge>
+      <Badge as='a' pill variant='secondary' href='#' onClick={() => setShown(true)}>?</Badge>
     </OverlayTrigger>
   );
 };
