@@ -28,6 +28,7 @@ const NewResourceForm: React.FC<Props> = ({ onSubmit }) => {
 
     onSubmit({ url, title, description, tags });
     setUrl(DEFAULT_URL);
+    setTitle(DEFAULT_OPTIONAL_STRING);
     setDescription(DEFAULT_OPTIONAL_STRING);
     setTags(DEFAULT_TAGS);
   };
